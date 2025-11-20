@@ -1,37 +1,39 @@
-
+// Program prompts user to enter a series of integers
+// separated by spaces
+// Program converts them to numbers and sums them
 import java.util.*;
-
 public class DebugSeven2
 {
-    public static void main(String[] args)
-    {
-        Scanner kb = new Scanner(System.in);
-        String name1, name2, name3;
-
-        System.out.println("Enter three names.");
-        System.out.println("They can be the same or different.");
-
-        System.out.print("First name >> ");
-        name1 = kb.nextLine();   
-
-        System.out.print("Second name >> ");
-        name2 = kb.nextLine();  
-
-        System.out.print("Third name >> ");
-        name3 = kb.nextLine();  
-
-        compareNames(name1, name2);  
-        compareNames(name1, name3);
-        compareNames(name2, name3);
-    }
-
-       public static void compareNames(String n1, String n2)
-    {
-        System.out.print(n1 + " and " + n2);
-
-        if(n1.equals(n2))       
-            System.out.println(" are the same");
-        else
-            System.out.println(" are different");
-    }
+public static void main(String[] args)
+{
+String str;
+int x;
+int length;
+int start = 0;
+int num;
+int lastSpace = -1;
+int sum = 0;
+String partStr;
+Scanner in = new Scanner(System.in);
+System.out.print("Enter a series of integers separated by spaces >> ");
+str = in.nextLine();
+length = str.length();
+for(x = 0; x < length; ++x)
+{
+if(str.charAt(x) == ' ')
+{
+partStr = str.substring(lastSpace + 1, x);
+num = Integer.parseInt(partStr);
+System.out.println(" " + num);
+sum += num;
+lastSpace = x;
+}
+}
+partStr = str.substring(lastSpace + 1, length);
+num = Integer.parseInt(partStr);
+System.out.println(" " + num);
+sum = num;
+System.out.println(" -------------------" +
+"\nThe sum of the integers is " + sum);
+}
 }
